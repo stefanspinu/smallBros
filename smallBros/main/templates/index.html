@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Small Bros Minting</title>
+  <link rel="icon" type="image/png" href="/images/logo.png" />
+  <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.0/web3.min.js"></script>
+  <!-- <link href="http://fonts.cdnfonts.com/css/babydoll" rel="stylesheet"> -->
+              
+  
+  <style>
+/* @import url('http://fonts.cdnfonts.com/css/baby-doll'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap'); */
+
+@font-face {
+    font-family: 'BabyDoll';
+    font-style: normal;
+    font-weight: normal;
+    src: local('BabyDoll'), url('images/BabyDoll.woff') format('woff');
+    }
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: BabyDoll;
+}
+
+    body {
+      background-image: url("images/bg.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      height: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    
+    .babydoll {
+      font-family: BabyDoll;
+    }
+
+    .menu,
+    .clear,
+    .header-mob {
+      display: none;
+    }
+    
+    header {
+      font-family: BabyDoll;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5vw;
+}
+
+    .header-content {
+          height: 6.5vw;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      position: relative;
+      width: max-content;
+    }
+
+    .header-mob-icons {
+  display: none;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.header-mob-icons img {
+  margin: 0 0 0 5vw;
+  width: 7.5vw;
+}
+
+/* .clear {
+  display: none;
+} */
+
+    .logo{
+        width: 150px;
+        height: 150px;
+        text-align: center;
+        }
+
+    .header-left a img {
+      width: 3.5rem;
+      object-fit: contain;
+      margin: 0 2.5rem 0 0;
+    }
+    .header-right {
+      font-family: BabyDoll;
+      width: max-content;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .header-right a {
+      font-size: 2rem;
+      color: #000;
+      text-decoration: none;
+      margin: 0 1.5rem;
+    }
+
+    .mint-box {
+  width: 100%;
+  max-width: 650px;
+  /* max-height: 1100px; */
+  padding: 6rem 2.5rem 2.5rem 2.5rem;
+  border-radius: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #d6e2f7;
+  margin: auto;
+  margin-top: 5%;
+  box-shadow: 0 0 100px 8px #fff;
+}
+.mint-box-top-img {
+  width: 10rem;
+  transform: translate(0, 100%);
+  margin: auto;
+}
+
+.verified-smart-contract {
+  width: 100%;
+  padding: 2.5rem 0;
+  text-align: center;
+  margin: 5rem 0 0 0;
+  font-size: 2rem;
+  text-decoration: underline;
+}
+
+.verified-smart-contract a{
+  color: rgb(255, 255, 255);
+}
+
+.leger{
+  text-align: center;
+  margin: 0 0 3rem 0;
+  color: #fff;
+}
+
+@media screen and (max-width: 1250px) {
+      .header-left a img {
+        width: 2.75rem;
+        object-fit: contain;
+        margin: 0 2rem 2rem 2rem;
+      }
+      .header-content {
+        flex-wrap: wrap;
+      }
+      .header-left {
+        width: 50%;
+        order: 1;
+        margin: 2rem 0 0 0;        
+      }
+      .header-right {
+        width: 50%;
+        order: 2;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+      .mint-box {
+        border-radius: 2.5rem;
+        align-items: center;
+      }
+      
+      .mint-box-top-img {
+        width: 10rem;
+        transform: translate(0, 80%);
+        margin: auto;
+}
+
+      #minting-dapp {
+        align-items: center;
+      }
+      .header-right {
+        display: none;
+      }
+      .menu {
+        display: block;
+      }
+      .menu,
+      .clear {
+        width: 3rem;
+        object-fit: contain;
+        top: 2.5rem;
+        right: 2.5rem;
+        position: absolute;
+        z-index: 5;
+        opacity: 0.75;
+      }
+      .clear {
+        display: none;
+        z-index: 1001;
+      }
+
+      .header-mob {
+        width: 100%;
+        height: max-content;
+        background-color: #fff;
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 3.5rem 3.5rem 0 3.5rem;
+        display: none;
+        z-index: 1000;
+      }
+      .header-mob a {
+        margin: 0 0 3.5rem 0;
+        font-size: 1.75rem;
+        color: var(--black);
+        text-align: center;
+        width: 100%;
+        text-decoration: none;
+      }
+      .header-mob main {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+@media screen and (max-width: 800px) {
+      .header-left a img {
+        width: 2.75rem;
+        object-fit: contain;
+        margin: 0 2rem 2rem 2rem;
+      }
+      .connect-btn {
+        padding: 1rem 2.5rem;
+      }
+      .header-content {
+        flex-wrap: wrap;
+      }
+      .header-left {
+        width: 50%;
+        order: 1;
+        margin: 2rem 0 0 0;        
+      }
+      .header-right {
+        width: 50%;
+        order: 2;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+      .mint-box {
+        border-radius: 2.5rem;
+        /* margin: 10rem 0 0 0; */
+      }
+      
+      .mint-box-top-img {
+        width: 10rem;
+        transform: translate(0, 60%);
+        margin: auto;
+}
+      .header-right {
+        display: none;
+      }
+      .menu {
+        display: block;
+      }
+      .menu,
+      .clear {
+        width: 3rem;
+        object-fit: contain;
+        top: 2.5rem;
+        right: 2.5rem;
+        position: absolute;
+        z-index: 5;
+        opacity: 0.75;
+      }
+      .clear {
+        display: none;
+        z-index: 1001;
+      }
+
+      .header-mob {
+        width: 100%;
+        height: max-content;
+        background-color: #fff;
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 3.5rem 3.5rem 0 3.5rem;
+        display: none;
+        z-index: 1000;
+      }
+      .header-mob a {
+        margin: 0 0 3.5rem 0;
+        font-size: 1.75rem;
+        color: var(--black);
+        text-align: center;
+        width: 100%;
+        text-decoration: none;
+      }
+      .header-mob main {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    </style>
+</head>
+<body>
+  <main>
+    <img class="mint-box-top-img" src="/images/logo.png" alt="Face1">
+    <div class="mint-box">
+      <div id="minting-dapp"><div class="no-wallet"><button class="primary" id="mint">Mint</button>
+        <div class="merkle-proof-manual-address">
+          <div class="supply">8012/8888</div>
+          <!-- <h2 class="WC">Raffle List Check</h2><p class="mid">Insert your wallet address below and click "Check my address" to make sure you are on the Raffle List.</p>
+        <div class="feedback-message" id="feedback-message" style="display: none;">Your address is in the Raffle List</div>
+      <input id="merkle-proof-manual-address" type="text" placeholder="0x000..." value="">  -->
+      <a href="https://opensea.io/collection/smallbros" target="_blank"><button id="checkWallet">Check On Opensea</button></a>
+    </div></div></div>
+    </div>
+  </main>
+  <header>
+    <div class="box">
+      <div class="header-content">
+        <div class="header-left">
+          <a
+            href="https://www.instagram.com/smallbrosnft/?hl=en"
+            target="_blank"
+          >
+            <img src="/images/SVG/instagram.svg" alt="instagram" />
+          </a>
+          <a href="https://twitter.com/SmallBrosNFT" target="_blank">
+            <img src="/images/SVG/twitter.svg" alt="twitter" />
+          </a>
+          <a href="https://medium.com/@smallbrosnft" target="_blank">
+            <img src="/images/SVG/medium.svg" alt="medium" />
+          </a>
+        </div>
+        <div class="header-right">
+          <a href="https://smallbrosnft.io/#traits" target="_blank_">ABOUT</a>
+          <a href="https://smallbrosnft.io/#roadmap" target="_blank_">ROADMAP</a>
+          <a href="https://smallbrosnft.io/#team-container" target="_blank_">TEAM</a>
+          <a href="https://smallbrosnft.io/#faq" target="_blank_">FAQ</a>
+        </div>
+        <!-- <div class="header-right">
+          <button class="connect-btn babydoll">
+            <span href="#minting-dapp" target="_blank_">CONNECT</span>
+          </button>
+        </div> -->
+      </div>
+    </div>
+  </header>
+  <img class="menu" src="images/menu.svg" alt="menu" />
+      <img class="clear" src="images/clear.svg" alt="clear" />
+      <div class="header-mob">
+        <main>
+          <a href="https://smallbrosnft.io/#traits" target="_blank_">TRAITS</a>
+          <a href="https://smallbrosnft.io/#roadmap" target="_blank_">ROADMAP</a>
+          <a href="https://smallbrosnft.io/#team-container" target="_blank_">TEAM</a>
+          <a href="https://smallbrosnft.io/#faq" target="_blank_">FAQ</a>
+        </main>
+      </div>
+</div>
+<div class="verified-smart-contract"><a href="https://etherscan.io/address/0xb18380485f7bA9C23Deb729bEDD3A3499Dbd4449" target="_blank_">Verified Smart Contract</a></div>
+<div class="leger">Minting with a Ledger? Be sure that both "Blind Signing" and "Debug Data" are turned on.</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      $(".menu").click(() => {
+        $(".menu").css({ display: "none" });
+        $(".clear").css({ display: "block" });
+        $(".header-mob").css({ display: "block" });
+      });
+      $(".clear").click(() => {
+        $(".menu").css({ display: "block" });
+        $(".clear").css({ display: "none" });
+        $(".header-mob").css({ display: "none" });
+      });
+    </script>
+</body>
+</html>
